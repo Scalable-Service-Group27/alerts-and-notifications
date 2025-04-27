@@ -1,3 +1,7 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /${spring.application.name}
 spring:
   application:
     name: notification
@@ -9,6 +13,30 @@ spring:
   sql:
     init:
       mode: never
+  mail:
+    host: smtp.your-email-provider.com
+    port: 587
+    username: your-email@example.com
+    password: your-email-password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  kafka:
+    consumer:
+      enable-auto-commit: ${KAFKA_CONSUMER_ENABLE_AUTO_COMMIT:false}
+      auto-commit-interval-ms: ${KAFKA_CONSUMER_AUTO_COMMIT_INTERVAL_MS:5000}
+      session-timeout-ms: ${KAFKA_CONSUMER_SESSION_TIMEOUT_MS:45000}
+      heartbeat-interval-ms: ${KAFKA_CONSUMER_HEARTBEAT_INTERVAL_MS:3000}
+      max-poll-records: ${KAFKA_CONSUMER_MAX_POLL_RECORDS:500}
+      max-poll-interval-ms: ${KAFKA_CONSUMER_MAX_POLL_INTERVAL_MS:300000}
+      bootstrap-servers: ${KAFKA_BROKERS:localhost:9092}
+      auto-offset-reset: ${KAFKA_CONSUMER_AUTO_OFFSET_RESET:latest}
+    properties:
+      security.protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+      sasl.mechanism: ${KAFKA_SECURITY_SASL_MECHANISM:PLAIN}
   jpa:
     show-sql: ${SHOW_SQL:true}
     hibernate:
@@ -16,3 +44,10 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+
+application:
+  kafka:
+    notification-consumer-topic: ${KAFKA_TOPIC_NOTIFICATION_CONSUMER:notification-consumer-topic}
+    process-message-threadpool-size: ${PROCESS_MESSAGE_THREADPOOL_SIZE:25}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID:asset-rest-service}
