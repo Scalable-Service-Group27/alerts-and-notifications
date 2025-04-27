@@ -39,6 +39,7 @@ public class Notification_consumer {
         log.info("Message received from topic={}, partitionId={}, offsetId={}", () -> topic, () -> partition, () -> offset);
         log.debug("Payload: {}", payload);
         // we need to add the logic to send notification based on the message structure received by consumer.
+
     }
 }
 

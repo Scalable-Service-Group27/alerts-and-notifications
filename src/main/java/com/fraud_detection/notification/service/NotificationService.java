@@ -21,14 +21,14 @@ public class NotificationService {
         this.notificationRepository = notificationRepository;
     }
 
-    public void sendNotification(String userId, String message, double accountNumber) {
+    public void sendNotification(Long userId, String message) {
 
         // Logic to send notification
 //        "fetch email_id from db, using user_id and account_number";
         log.info("Sending notification: {}", userId);
         // Here you would implement the actual notification sending logic
         // For example, sending an email or a push notification
-        UserDetailsEntity userDetails = notificationRepository.findByUserIdAndAccountNumber(userId, accountNumber);
+        UserDetailsEntity userDetails = notificationRepository.findByUserId(userId);
         String emailId = userDetails.getEmailId();
         // Send email
         SimpleMailMessage mailMessage = new SimpleMailMessage();
