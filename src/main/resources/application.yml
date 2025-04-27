@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: notification
+  datasource:
+    url: jdbc:mysql://localhost:3306/your_database_name
+    username: your_username
+    password: your_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: never
+  jpa:
+    show-sql: ${SHOW_SQL:true}
+    hibernate:
+      ddl-auto: ${DDL_AUTO:validate}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
