@@ -51,3 +51,40 @@ application:
     process-message-threadpool-size: ${PROCESS_MESSAGE_THREADPOOL_SIZE:25}
     consumer:
       group-id: ${KAFKA_CONSUMER_GROUP_ID:asset-rest-service}
+
+
+
+kafka:
+  transaction:
+    servers: localhost:9092
+    ssl_endpoint_algorithm: ""
+    consumerGroup: TRANSACTION_CONSUMER_GROUP
+    maxPollRecords: 1000
+    maxPollIntervals: 30000
+    sessionTimeout: 60000
+    concurrency: 3
+    idleEventInterval : 60000
+    security_enabled: false
+    security_protocol: SSL
+  fraud:
+    servers: localhost:9092
+    ssl_endpoint_algorithm: ""
+    consumerGroup: FRAUD_CONSUMER_GROUP
+    maxPollRecords: 1000
+    maxPollIntervals: 30000
+    sessionTimeout: 60000
+    concurrency: 3
+    idleEventInterval: 60000
+    security_enabled: false
+    security_protocol: SSL
+  fraud1:
+    servers: localhost:9092
+    ssl_endpoint_algorithm: ""
+    consumerGroup: FRAUD1_CONSUMER_GROUP
+    maxPollRecords: 1000
+    maxPollIntervals: 30000
+    sessionTimeout: 60000
+    concurrency: 3
+    idleEventInterval: 60000
+    security_enabled: false
+    security_protocol: SSL

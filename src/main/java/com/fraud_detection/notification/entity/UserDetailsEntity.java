@@ -9,23 +9,41 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "user_details")
+@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Builder
 @Getter
-
-
 public class UserDetailsEntity {
-    @Id
-    @Column(name = "user_id")
-    private String userId;
-    @Column(name = "email_id")
-    private String emailId;
-    @Column(name = "account_number")
-    private double accountNumber;
 
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "enabled")
+    private boolean enabled;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "failed_login_attempts")
+    private int failed_login_attempts;
 
 }
