@@ -1,29 +1,39 @@
 server:
-  port: 8083
+  port: 8093
   servlet:
     context-path: /${spring.application.name}
+
 spring:
   application:
     name: notification
+  jpa:
+    show-sql: ${SHOW_SQL:true}
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
-    url: jdbc:mysql://localhost:3306/your_database_name
-    username: your_username
-    password: your_password
+    url: jdbc:mysql://mysql-22cbfef7-scalable-services-assignment-01042025.c.aivencloud.com:11181/fraud_detection_db
+    username: avnadmin
+    password: AVNS_beR7beLStdrPaO5btIS
     driver-class-name: com.mysql.cj.jdbc.Driver
   sql:
     init:
       mode: never
   mail:
-    host: smtp.your-email-provider.com
+    host: smtp.gmail.com
     port: 587
-    username: your-email@example.com
-    password: your-email-password
+    username: satwik0810@gmail.com
+    password: tynd ywbg nkim hfdr
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+
+
   kafka:
     consumer:
       enable-auto-commit: ${KAFKA_CONSUMER_ENABLE_AUTO_COMMIT:false}
@@ -37,13 +47,8 @@ spring:
     properties:
       security.protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
       sasl.mechanism: ${KAFKA_SECURITY_SASL_MECHANISM:PLAIN}
-  jpa:
-    show-sql: ${SHOW_SQL:true}
-    hibernate:
-      ddl-auto: ${DDL_AUTO:validate}
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+
+
 
 application:
   kafka:
@@ -53,9 +58,16 @@ application:
       group-id: ${KAFKA_CONSUMER_GROUP_ID:asset-rest-service}
 
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
 
 kafka:
   transaction:
+    topic: transaction-notification
     servers: localhost:9092
     ssl_endpoint_algorithm: ""
     consumerGroup: TRANSACTION_CONSUMER_GROUP
@@ -67,6 +79,7 @@ kafka:
     security_enabled: false
     security_protocol: SSL
   fraud:
+    topic: fraud-alerts
     servers: localhost:9092
     ssl_endpoint_algorithm: ""
     consumerGroup: FRAUD_CONSUMER_GROUP
@@ -78,6 +91,7 @@ kafka:
     security_enabled: false
     security_protocol: SSL
   fraud1:
+    topic: notification
     servers: localhost:9092
     ssl_endpoint_algorithm: ""
     consumerGroup: FRAUD1_CONSUMER_GROUP

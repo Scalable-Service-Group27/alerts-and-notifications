@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface NotificationRepository extends JpaRepository<UserDetailsEntity, String> {
     // Custom query methods can be defined here if needed
     // For example, to find a user by their email ID or account number
-    UserDetailsEntity findByUserId(Long userId);
+    UserDetailsEntity findById(Long id);
 
 }
